@@ -52,8 +52,10 @@ public class UserServiceImpl implements UserService {
         return "User with Username " + userName + " has been Deleted Successfully.";
     }
 
-
-
+    @Override
+    public List<User> allUsersByFirstNameAndLastName(String firstName, String lastName) {
+        return repository.findByFirstNameAndLastName(firstName, lastName);
+    }
 
 
 }

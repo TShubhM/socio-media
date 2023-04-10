@@ -3,6 +3,8 @@ package com.SocioMediaUser.services;
 import com.SocioMediaUser.model.User;
 import com.SocioMediaUser.repositories.UserRepository;
 
+import java.util.List;
+
 public interface UserService {
     //    Create a new User
     User createUser(User user);
@@ -15,6 +17,9 @@ public interface UserService {
 
     //    Delete a user By Username and password
     String deleteUser(String userName, String password);
+
+    //    List all Users
+    List<User> allUsersByFirstNameAndLastName(String firstName, String lastName);
 
 
 }
