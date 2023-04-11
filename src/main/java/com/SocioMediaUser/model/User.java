@@ -24,6 +24,9 @@ public class User {
     @Column(name = "user_name")
     private String userName;
     private String firstName;
+    private String bio;
+    private Blob profilepic;
+    private Blob coverPhoto;
     private String lastName;
     private String email;
     private String password;
@@ -37,11 +40,20 @@ public class User {
     private LocalDateTime lastUpdatedOn;
 
 
-    @Override
-    public String toString() {
+    @java.lang.Override
+    public java.lang.String toString() {
         return "User{" +
-                "firstName='" + firstName + '\'' +
+                "userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", bio='" + bio + '\'' +
+                ", profilepic=" + profilepic +
+                ", coverPhoto=" + coverPhoto +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", dob=" + dob +
+                ", createdOn=" + createdOn +
+                ", lastUpdatedOn=" + lastUpdatedOn +
                 '}';
     }
 }
