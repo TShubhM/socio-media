@@ -24,8 +24,7 @@ public class Profile {
     private Blob profilepic;
     private Blob coverPhoto;
     @OneToOne(fetch = FetchType.LAZY)
-     @JoinColumn(name="user_name",referencedColumnName = "user_name",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-
+    @JoinColumn(name="user_name",referencedColumnName = "user_name",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     private User user;
 
     @Override
