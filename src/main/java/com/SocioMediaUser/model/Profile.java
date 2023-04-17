@@ -11,7 +11,7 @@ import java.sql.Blob;
 
 
 @Entity
-@Table(name = "T_profile")
+@Table(name = "profile")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,11 +21,12 @@ public class Profile {
     private Long id;
 
     private String bio;
-    private Blob profilepic;
-    private Blob coverPhoto;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_name",referencedColumnName = "user_name",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
-    private User user;
+    private String profilepic;
+    private String coverPhoto;
+
+    private String userName;
+    private int followingcount;
+    private int followersCount;
 
     @Override
     public String toString() {
@@ -34,7 +35,9 @@ public class Profile {
                 ", bio='" + bio + '\'' +
                 ", profilepic=" + profilepic +
                 ", coverPhoto=" + coverPhoto +
-
+                ", userName=" + userName +
+                ", followingcount=" + followingcount +
+                ", followersCount=" + followersCount +
                 '}';
     }
 }

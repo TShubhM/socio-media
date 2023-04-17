@@ -1,9 +1,20 @@
 package com.SocioMediaUser.services;
 
+import com.SocioMediaUser.model.Followers;
 import com.SocioMediaUser.model.User;
 
-public interface FollowersService {
+import java.util.List;
 
-    //add followers
-    public String addfollower(User user);
+public interface FollowersService {
+//here following user means  user who is being followed here suppose user sarala and follower is sara
+    public Followers createFollowers(String followingUsername, String followedUsername);
+    //delete following
+    public String deleteFollowers(String followingusername,String followedusername);
+    //get following users
+    public List<Followers> getFollowersByUser(String username);
+    //is following
+    public boolean isFollower(String followingUsername,String followedUsername);
+    //get following count
+    public int getFollowersCount(String userName);
+//get Following By Followed User
 }

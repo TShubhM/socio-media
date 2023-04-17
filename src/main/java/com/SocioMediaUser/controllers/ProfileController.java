@@ -12,10 +12,19 @@ public class ProfileController {
     @Autowired
     Profileservice service;
 
-    @PostMapping("/create")
-    public String createProfile(@RequestBody ProfileRequest p, @RequestParam String id){
-         service.createprofile(id,p);
-         return "Profile Created";
+
+    @GetMapping("/getDetails")
+    public Profile getdetails(@RequestParam (value="userName") String userName){
+       return service.getProfile(userName);
+    }
+    @DeleteMapping("/deleteProfile")
+    public String deleteProfile(@RequestParam (value="userName") String userName){
+        return service.deleteProfile(userName);
+    }
+    @PutMapping("/update")
+    public String updateProfile(@RequestParam(value="userName") String id,@RequestBody ProfileRequest p){
+       return service.editProfile(id,p);
+
     }
 
 }

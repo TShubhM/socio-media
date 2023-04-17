@@ -12,8 +12,8 @@ public class ProfileRequest {
 
 
         private String bio;
-        private Blob profilepic;
-        private Blob coverPhoto;
+        private String profilepic;
+        private String coverPhoto;
 
         @Override
         public String toString() {
