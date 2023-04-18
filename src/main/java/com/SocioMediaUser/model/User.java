@@ -1,14 +1,19 @@
 package com.SocioMediaUser.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
+
+import javax.persistence.*;
 
 
 @Getter
@@ -18,42 +23,43 @@ import java.util.*;
 @Entity
 @Table(name = "users_tbl")
 @DynamicUpdate
+
 public class User {
 
     @Id
     @Column(name = "user_name")
     private String userName;
     private String firstName;
-    private String bio;
-    private Blob profilepic;
-    private Blob coverPhoto;
+
     private String lastName;
     private String email;
+    private String location;
     private String password;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
     @CreationTimestamp
-    private LocalDateTime createdOn;
+    private Timestamp createdOn;
     @UpdateTimestamp
-    private LocalDateTime lastUpdatedOn;
+    private Timestamp lastUpdatedOn;
+    @OneToMany(mappedBy = "followingUser", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonBackReference
+    private List<Following> following;
 
-
-    @java.lang.Override
-    public java.lang.String toString() {
+    @OneToMany(mappedBy = "followedUser", cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonBackReference
+    private List<Followers> followers;
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private Profile profile;
+    @Override
+    public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", bio='" + bio + '\'' +
-                ", profilepic=" + profilepic +
-                ", coverPhoto=" + coverPhoto +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", dob=" + dob +
-                ", createdOn=" + createdOn +
-                ", lastUpdatedOn=" + lastUpdatedOn +
                 '}';
     }
 }
