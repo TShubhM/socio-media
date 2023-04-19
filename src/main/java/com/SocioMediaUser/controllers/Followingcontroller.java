@@ -24,29 +24,30 @@ public class Followingcontroller {
 
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteFollowing(@RequestBody Followingrequest followingrequest) {
-        String s = service.deleteFollowing(followingrequest.getFollowingUsername(),followingrequest.getFollowedUsername());
+        String s = service.deleteFollowing(followingrequest.getFollowingUsername(), followingrequest.getFollowedUsername());
         return ResponseEntity.status(HttpStatus.OK).body(s);
     }
 
 
     @GetMapping("/getFollowingByUser")
-    public ResponseEntity<List<Following>> getFollowingByUser(@RequestParam(value="userName") String username) {
+    public ResponseEntity<List<Following>> getFollowingByUser(@RequestParam(value = "userName") String username) {
         List<Following> list = service.getFollowingByUser(username);
-        if(!list.isEmpty()){
+        if (!list.isEmpty()) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(list);}
-        else throw new RuntimeException("List is empty!!");
+            return ResponseEntity.status(HttpStatus.OK).body(list);
+        } else throw new RuntimeException("List is empty!!");
 
     }
 
+//    This should be GetMapping
     @PostMapping("/isFollowing")
     public boolean isFollowing(@RequestBody Followingrequest followingrequest) {
 
-        return service.isFollowing(followingrequest.getFollowingUsername(),followingrequest.getFollowedUsername());
+        return service.isFollowing(followingrequest.getFollowingUsername(), followingrequest.getFollowedUsername());
     }
 
     @GetMapping("/count")
-    public int getFollowingCount(@RequestParam(value="userName") String userName) {
+    public int getFollowingCount(@RequestParam(value = "userName") String userName) {
         return service.getFollowingCount(userName);
     }
 }

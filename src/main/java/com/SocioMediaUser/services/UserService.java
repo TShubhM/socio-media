@@ -17,5 +17,5 @@ public interface UserService {
     String deleteUser(String userName, String password);
 
 
-
+    boolean userValidityChecking(String userName);
 }

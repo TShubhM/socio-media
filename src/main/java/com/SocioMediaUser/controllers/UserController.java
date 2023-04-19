@@ -21,8 +21,7 @@ public class UserController {
     public ResponseEntity<User> createNewUser(@RequestBody UserRequest user) {
        // return ResponseEntity.status(HttpStatus.OK).body(service.createUser(user));
         User user1 = service.createUser(user);
-
-        System.out.println(user1);
+//        System.out.println(user1);
         return ResponseEntity.status(HttpStatus.CREATED).body(user1);
     }
 
@@ -32,11 +31,16 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).body(user1);
     }
 
-
+//not working properly 500 Internal Server Error
     @DeleteMapping("/{userName}/{password}")
     public ResponseEntity<String> deleteUser(@PathVariable String userName, @PathVariable String password) {
 
         return ResponseEntity.status(HttpStatus.OK).body(service.deleteUser(userName, password));
+    }
+
+    @GetMapping("/validity/{userName}")
+    public ResponseEntity<Boolean> userValidityCheck(@PathVariable String userName){
+        return ResponseEntity.status(HttpStatus.OK).body(service.userValidityChecking(userName));
     }
 
 

@@ -1,10 +1,10 @@
 package com.SocioMediaUser.services.impl;
 
+import com.SocioMediaUser.Dto.UserRequest;
 import com.SocioMediaUser.exceptions.UserNameModificationException;
 import com.SocioMediaUser.exceptions.UserNameNotPresentException;
 import com.SocioMediaUser.model.Profile;
 import com.SocioMediaUser.model.User;
-import com.SocioMediaUser.Dto.UserRequest;
 import com.SocioMediaUser.repositories.FollowersRepo;
 import com.SocioMediaUser.repositories.FollowingRepo;
 import com.SocioMediaUser.repositories.ProfileRepo;
@@ -29,12 +29,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(UserRequest user) {
-        User new_user=userRequestMapTouser(user);
+        User new_user = userRequestMapTouser(user);
         List<User> users = repository.findAll();
         if (users.stream().anyMatch(user1 -> user1.getUserName().equals(user.getUserName()))) {
             throw new UserNameNotPresentException("Username " + user.getUserName() + " is already taken.");
         } else {
-            Profile profile=new Profile();
+            Profile profile = new Profile();
             profile.setUserName(new_user.getUserName());
             profileRepo.save(profile);
             return repository.save(new_user);
@@ -73,18 +73,19 @@ public class UserServiceImpl implements UserService {
     }
 
 
-
-
     @Override
     public String deleteUser(String userName, String password) {
-       followingRepo.deleteByFollowedUser(userName);
-       followersRepo.deleteByFollowingUser(userName);
-       profileRepo.delete(profileRepo.findByUserName(userName));
-       repository.delete(repository.findByUserNameAndPassword(userName, password));
+        followingRepo.deleteByFollowedUser(userName);
+        followersRepo.deleteByFollowingUser(userName);
+        profileRepo.delete(profileRepo.findByUserName(userName));
+        repository.delete(repository.findByUserNameAndPassword(userName, password));
         return "User with Username " + userName + " has been Deleted Successfully.";
     }
 
-
+    @Override
+    public boolean userValidityChecking(String userName) {
+        return repository.existsById(userName);
+    }
 
 
 }

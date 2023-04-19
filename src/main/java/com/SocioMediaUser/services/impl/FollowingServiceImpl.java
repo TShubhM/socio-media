@@ -48,7 +48,7 @@ public class FollowingServiceImpl implements FollowingService {
 
 
     }
-
+// This is deleting user as well
     @Override
     public String deleteFollowing(String followingUsername, String followedUsername) {
         User followingUser = userRepository.findById(followingUsername).orElseThrow(() -> new EntityNotFoundException("User not found"));
@@ -89,4 +89,5 @@ public class FollowingServiceImpl implements FollowingService {
     }
 
 
+//    To get a list with same username or FirstAndLastName
 }

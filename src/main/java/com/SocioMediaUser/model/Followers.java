@@ -13,6 +13,8 @@ import javax.persistence.*;
 @Entity
 @Table(name="followers")
 public class Followers {
+//    Followers and following creating column with same name and they also have relationship
+//    between them so we can user 'CascadeType.ALL' to add it into one table.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
