@@ -26,7 +26,13 @@ public class UserController {
     }
 
     @PutMapping("/{userName}/{password}")
-    public ResponseEntity<User> updateExistingUser(@PathVariable String userName, @PathVariable String password, @RequestBody UserRequest user,@PathVariable Integer test,@PathVariable String test, String test1) {
+    public ResponseEntity<User> updateExistingUser(@PathVariable String userName, @PathVariable String password, @RequestBody UserRequest user) {
+        User user1 = service.updateUser(userName, password, user);
+        return ResponseEntity.status(HttpStatus.OK).body(user1);
+    }
+
+    @PutMapping("/{userName}/{password}")
+    public ResponseEntity<User> updateExistingUser(@PathVariable String userName, @PathVariable String password, @RequestBody UserRequest user, String test) {
         User user1 = service.updateUser(userName, password, user);
         return ResponseEntity.status(HttpStatus.OK).body(user1);
     }
