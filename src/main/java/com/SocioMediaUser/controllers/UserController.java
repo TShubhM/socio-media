@@ -16,7 +16,8 @@ public class UserController {
     private UserService service;
 
     @PostMapping
-    public ResponseEntity<User> createNewUser(@RequestBody UserRequest user,Integer number) {
+
+    public ResponseEntity<User> createNewUser(@RequestBody UserRequest user,Integer number,String word) {
         // return ResponseEntity.status(HttpStatus.OK).body(service.createUser(user));
         User user1 = service.createUser(user);
 //        System.out.println(user1);
